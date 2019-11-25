@@ -100,25 +100,6 @@ if PROCESSED_FILE == False: #对用户特征进行预处理
     train_df.to_csv(PATH+"processed_train_fusai2.csv")
     test_df.to_csv(PATH+"processed_test_fusai2.csv")
 
-test_df2 = pd.read_table(PATH+'round2_iflyad_test_feature.txt')
-# In[3]:
-
-
-# In[3]:
-
-train_df['f_channel'].head(5)
-
-
-# In[4]:
-
-train_df.columns
-
-
-# In[4]:
-
-
-# In[5]:
-
 train_df['userfea'] = train_df['userfea2'].apply(lambda x: str(x).split())
 test_df['userfea'] = test_df['userfea2'].apply(lambda x: str(x).split())
 
@@ -127,22 +108,9 @@ test_nunique = test_df2.nunique()
 test_nunique.sort_values(inplace=True)
 one_hot_col = test_nunique[test_nunique<50].index.values.tolist()
 one_hot_col = list(set(one_hot_col))
-print (train_df['userfea'].head(5))
+
 train_df['userfea'] = train_df['userfea'].apply(lambda x: [np.int(np.float(i)) for i in x])
 test_df['userfea'] = test_df['userfea'].apply(lambda x: [np.int (np.float(i)) for i in x])
-print (train_df['userfea'].head(5))
-
-
-
-train_df['f_channel'].head(5)
-
-train_df.columns
-
-
-
-
-print (train_df['campaign_id'].head(5))
-
 
 
 
@@ -175,7 +143,6 @@ for f in has_string:
     test_df[f] = test_df[f].apply(lambda x: str(x).lower())
     
 
-# In[19]:
 
 def unxi_time(t):
     t = time.localtime(t)
@@ -186,21 +153,13 @@ train_df['time2']  = train_df['time'].apply(lambda x: unxi_time(x))
 test_df['time2']  = test_df['time'].apply(lambda x: unxi_time(x))
 
 
-# In[20]:
 
 train_df['time'].head(5)
 
 
-# In[21]:
 
 train_df["hour"] = train_df["time2"].apply(lambda x: int(str(x).split('-')[3]))
 test_df["hour"] = test_df["time2"].apply(lambda x: int(str(x).split('-')[3]))
-
-
-# In[22]:
-
-train_df["hour"].head(5)
-
 
 
 features_to_use=[]
