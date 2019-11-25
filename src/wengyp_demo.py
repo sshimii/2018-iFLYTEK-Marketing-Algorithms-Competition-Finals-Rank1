@@ -4,7 +4,7 @@ import pandas as pd
 import time
 import pandas as pd
 import numpy as np
-import tensorflow as tf
+#import tensorflow as tf
 
 import matplotlib.pyplot as plt
 
@@ -74,7 +74,7 @@ if PROCESSED_FILE == False: #对用户特征进行预处理
     
     train_df1 = pd.read_table(PATH+'round1_iflyad_train.txt')
     train_df2 = pd.read_table(PATH+'round2_iflyad_train.txt')
-    test_df = pd.read_table(PATH+'round2_iflyad_test_feature.txt')
+    test_df = pd.read_table(PATH+'round1_iflyad_test_feature.txt')
     test_df2 = pd.read_table(PATH+'round2_iflyad_test_feature.txt')
     train_df = pd.concat([train_df1,train_df2],ignore_index=True).drop_duplicates()
     print ("train_df_len",len(train_df))
